@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cabinet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="Cabinet.xsd">
+
+    <informations>
+        <nom>Cabinet Medical Ibn Sina</nom>
+        <adresse>
+            <rue>12 Avenue Habib Bourguiba</rue>
+            <ville>Sfax</ville>
+            <codePostal>3000</codePostal>
+            <pays>Tunisie</pays>
+        </adresse>
+        <contact>
+            <telephone>74200100</telephone>
+            <email>contact@ibnsina-sfax.tn</email>
+        </contact>
+    </informations>
+
+    <medecins>
+        <medecin id="M001">
+            <nom>Ben Salah</nom>
+            <prenom>Karim</prenom>
+            <cin>05123456</cin>
+            <specialite>Generaliste</specialite>
+            <contact>
+                <telephone>98123456</telephone>
+                <email>k.bensalah@ibnsina-sfax.tn</email>
+            </contact>
+            <horaires>
+                <horaire jour="Lundi"><debut>08:00:00</debut><fin>16:00:00</fin></horaire>
+                <horaire jour="Mercredi"><debut>08:00:00</debut><fin>16:00:00</fin></horaire>
+                <horaire jour="Vendredi"><debut>08:00:00</debut><fin>13:00:00</fin></horaire>
+            </horaires>
+            <tarifConsultation>35.000</tarifConsultation>
+        </medecin>
+        <medecin id="M002">
+            <nom>Trabelsi</nom>
+            <prenom>Leila</prenom>
+            <cin>07654321</cin>
+            <specialite>Cardiologie</specialite>
+            <contact>
+                <telephone>22334455</telephone>
+                <telephone>74200101</telephone>
+                <email>l.trabelsi@ibnsina-sfax.tn</email>
+            </contact>
+            <horaires>
+                <horaire jour="Mardi"><debut>09:00:00</debut><fin>17:00:00</fin></horaire>
+                <horaire jour="Jeudi"><debut>09:00:00</debut><fin>17:00:00</fin></horaire>
+            </horaires>
+            <tarifConsultation>60.000</tarifConsultation>
+        </medecin>
+        <medecin id="M003">
+            <nom>Mansouri</nom>
+            <prenom>Sami</prenom>
+            <cin>09876543</cin>
+            <specialite>Pediatrie</specialite>
+            <contact>
+                <telephone>55667788</telephone>
+            </contact>
+            <horaires>
+                <horaire jour="Lundi"><debut>14:00:00</debut><fin>19:00:00</fin></horaire>
+                <horaire jour="Samedi"><debut>08:00:00</debut><fin>12:00:00</fin></horaire>
+            </horaires>
+            <tarifConsultation>45.000</tarifConsultation>
+        </medecin>
+    </medecins>
+
+    <patients>
+        <patient id="P0001" assureCNAM="true">
+            <nom>Gharbi</nom>
+            <prenom>Ahmed</prenom>
+            <cin>123</cin>
+            <sexe>M</sexe>
+            <dateNaissance>1985-03-12</dateNaissance>
+            <adresse>
+                <rue>5 Rue de Tunis</rue>
+                <ville>Sfax</ville>
+                <codePostal>3002</codePostal>
+                <pays>Tunisie</pays>
+            </adresse>
+            <contact>
+                <telephone>20111222</telephone>
+                <email>ahmed.gharbi@mail.tn</email>
+            </contact>
+            <dossierMedical>
+                <groupeSanguin>O+</groupeSanguin>
+                <poids>82.5</poids>
+                <taille>178</taille>
+                <allergies>
+                    <allergie gravite="severe">Penicilline</allergie>
+                </allergies>
+                <antecedents>
+                    <antecedent>Hypertension arterielle</antecedent>
+                </antecedents>
+            </dossierMedical>
+        </patient>
+        <patient id="P0002" assureCNAM="true">
+            <nom>Jaziri</nom>
+            <prenom>Sonia</prenom>
+            <cin>10223344</cin>
+            <sexe>F</sexe>
+            <dateNaissance>1992-11-30</dateNaissance>
+            <adresse>
+                <rue>20 Route de Gabes</rue>
+                <ville>Sfax</ville>
+                <codePostal>3003</codePostal>
+                <pays>Tunisie</pays>
+            </adresse>
+            <contact>
+                <telephone>10999888</telephone>
+            </contact>
+            <dossierMedical>
+                <groupeSanguin>C+</groupeSanguin>
+                <poids>60.0</poids>
+                <taille>165</taille>
+                <allergies>
+                    <allergie gravite="legere">Pollen</allergie>
+                    <allergie gravite="moderee">Arachides</allergie>
+                </allergies>
+            </dossierMedical>
+        </patient>
+        <patient id="P0003" assureCNAM="false">
+            <nom>Gharbi</nom>
+            <prenom>Yasmine</prenom>
+            <sexe>F</sexe>
+            <dateNaissance>2018-06-05</dateNaissance>
+            <adresse>
+                <rue>5 Rue de Tunis</rue>
+                <ville>Sfax</ville>
+                <codePostal>3002</codePostal>
+                <pays>Tunisie</pays>
+            </adresse>
+            <contact>
+                <telephone>20111222</telephone>
+            </contact>
+            <dossierMedical>
+                <groupeSanguin>B+</groupeSanguin>
+                <poids>22.0</poids>
+                <taille>115</taille>
+            </dossierMedical>
+        </patient>
+    </patients>
+
+    <rendezVousListe>
+        <rendezVous id="RDV0001" medecinRef="M001" patientRef="P0001" statut="realise">
+            <date>2026-10-12</date>
+            <heure>09:00:00</heure>
+            <motif>Controle tension arterielle</motif>
+        </rendezVous>
+        <rendezVous id="RDV0002" medecinRef="M002" patientRef="P0001" statut="realise">
+            <date>2026-10-20</date>
+            <heure>10:30:00</heure>
+            <motif>Bilan cardiaque</motif>
+        </rendezVous>
+        <rendezVous id="RDV0003" medecinRef="M003" patientRef="P0003" statut="realise">
+            <date>2026-10-26</date>
+            <heure>15:00:00</heure>
+            <motif>Fievre et toux</motif>
+        </rendezVous>
+        <rendezVous id="RDV0004" medecinRef="M001" patientRef="P9999" statut="confirme">
+            <date>2026-11-09</date>
+            <heure>11:00:00</heure>
+            <motif>Consultation generale</motif>
+        </rendezVous>
+        <rendezVous id="RDV0005" medecinRef="M002" patientRef="P0002" statut="planifie">
+            <date>2026-11-12</date>
+            <heure>14:00:00</heure>
+            <motif>Palpitations</motif>
+        </rendezVous>
+        <rendezVous id="RDV0006" medecinRef="M001" patientRef="P0003" statut="annule">
+            <date>2026-11-04</date>
+            <heure>09:30:00</heure>
+            <motif>Certificat medical</motif>
+        </rendezVous>
+    </rendezVousListe>
+
+    <consultations>
+        <consultation id="C0001" rdvRef="RDV0001">
+            <constantes>
+                <temperature>36.8</temperature>
+                <tension>150/95</tension>
+                <poids>82.5</poids>
+            </constantes>
+            <diagnostic>Hypertension non controlee</diagnostic>
+            <ordonnance>
+                <medicament>
+                    <nom>Amlodipine</nom>
+                    <dosage>5 mg</dosage>
+                    <frequence>1 comprime par jour</frequence>
+                    <dureeJours>30</dureeJours>
+                </medicament>
+            </ordonnance>
+            <examens>
+                <examen>Bilan lipidique</examen>
+            </examens>
+        </consultation>
+        <consultation id="C0002" rdvRef="RDV0002">
+            <constantes>
+                <temperature>36.6</temperature>
+                <tension>140/90</tension>
+            </constantes>
+            <diagnostic>Hypertension legere, ECG normal</diagnostic>
+            <examens>
+                <examen>Electrocardiogramme</examen>
+                <examen>Echographie cardiaque</examen>
+            </examens>
+        </consultation>
+        <consultation id="C0003" rdvRef="RDV0003">
+            <constantes>
+                <temperature>45.0</temperature>
+                <poids>22.0</poids>
+            </constantes>
+            <diagnostic>Bronchite virale</diagnostic>
+            <ordonnance>
+                <medicament>
+                    <nom>Paracetamol</nom>
+                    <dosage>250 mg</dosage>
+                    <frequence>3 fois par jour</frequence>
+                    <dureeJours>5</dureeJours>
+                </medicament>
+                <medicament>
+                    <nom>Sirop antitussif</nom>
+                    <dosage>5 ml</dosage>
+                    <frequence>2 fois par jour</frequence>
+                    <dureeJours>7</dureeJours>
+                </medicament>
+            </ordonnance>
+        </consultation>
+    </consultations>
+
+    <factures>
+        <facture id="F0001" consultationRef="C0001" payee="true">
+            <montant>35.000</montant>
+            <modePaiement>CNAM</modePaiement>
+        </facture>
+        <facture id="F0002" consultationRef="C0002" payee="false">
+            <montant>60.000</montant>
+            <modePaiement>carte</modePaiement>
+        </facture>
+        <facture id="F0003" consultationRef="C0003" payee="true">
+            <montant>45.000</montant>
+            <modePaiement>especes</modePaiement>
+        </facture>
+    </factures>
+</cabinet>

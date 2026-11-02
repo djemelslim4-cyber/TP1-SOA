@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+
+
+
+    <xs:simpleType name="MedecinIdType">
+        <xs:restriction base="xs:string"><xs:pattern value="M[0-9]{3}"/></xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PatientIdType">
+        <xs:restriction base="xs:string"><xs:pattern value="P[0-9]{4}"/></xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RdvIdType">
+        <xs:restriction base="xs:string"><xs:pattern value="RDV[0-9]{4}"/></xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ConsultationIdType">
+        <xs:restriction base="xs:string"><xs:pattern value="C[0-9]{4}"/></xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FactureIdType">
+        <xs:restriction base="xs:string"><xs:pattern value="F[0-9]{4}"/></xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="CinType">
+        <xs:restriction base="xs:string"><xs:pattern value="[0-9]{8}"/></xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="TelephoneType">
+        <xs:restriction base="xs:string"><xs:pattern value="[234579][0-9]{7}"/></xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EmailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="NomType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+            <xs:maxLength value="50"/>
+            <xs:pattern value="\S(.*\S)?"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SexeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="F"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GroupeSanguinType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="A+"/><xs:enumeration value="A-"/>
+            <xs:enumeration value="B+"/><xs:enumeration value="B-"/>
+            <xs:enumeration value="AB+"/><xs:enumeration value="AB-"/>
+            <xs:enumeration value="O+"/><xs:enumeration value="O-"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SpecialiteType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Generaliste"/>
+            <xs:enumeration value="Cardiologie"/>
+            <xs:enumeration value="Pediatrie"/>
+            <xs:enumeration value="Dermatologie"/>
+            <xs:enumeration value="Gynecologie"/>
+            <xs:enumeration value="Ophtalmologie"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StatutRdvType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="planifie"/>
+            <xs:enumeration value="confirme"/>
+            <xs:enumeration value="annule"/>
+            <xs:enumeration value="realise"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="JourType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Lundi"/><xs:enumeration value="Mardi"/>
+            <xs:enumeration value="Mercredi"/><xs:enumeration value="Jeudi"/>
+            <xs:enumeration value="Vendredi"/><xs:enumeration value="Samedi"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ModePaiementType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="especes"/>
+            <xs:enumeration value="cheque"/>
+            <xs:enumeration value="carte"/>
+            <xs:enumeration value="CNAM"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="DateNaissanceType">
+        <xs:restriction base="xs:date"><xs:minInclusive value="1900-01-01"/></xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="PoidsType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="1"/><xs:maxInclusive value="300"/>
+            <xs:fractionDigits value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TailleType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="30"/><xs:maxInclusive value="250"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TemperatureType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="34"/><xs:maxInclusive value="42"/>
+            <xs:fractionDigits value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TensionType">
+        <xs:restriction base="xs:string"><xs:pattern value="[0-9]{2,3}/[0-9]{2,3}"/></xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="MontantType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="10000"/>
+            <xs:fractionDigits value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="DureeJoursType">
+        <xs:restriction base="xs:positiveInteger"><xs:maxInclusive value="365"/></xs:restriction>
+    </xs:simpleType>
+
+
+
+    <xs:complexType name="AdresseType">
+        <xs:sequence>
+            <xs:element name="rue" type="NomType"/>
+            <xs:element name="ville" type="NomType"/>
+            <xs:element name="codePostal">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"><xs:pattern value="[0-9]{4}"/></xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="pays" type="NomType" default="Tunisie"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ContactType">
+        <xs:sequence>
+            <xs:element name="telephone" type="TelephoneType" maxOccurs="3"/>
+            <xs:element name="email" type="EmailType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="HoraireType">
+        <xs:sequence>
+            <xs:element name="debut" type="xs:time"/>
+            <xs:element name="fin" type="xs:time"/>
+        </xs:sequence>
+        <xs:attribute name="jour" type="JourType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="MedecinType">
+        <xs:sequence>
+            <xs:element name="nom" type="NomType"/>
+            <xs:element name="prenom" type="NomType"/>
+            <xs:element name="cin" type="CinType"/>
+            <xs:element name="specialite" type="SpecialiteType"/>
+            <xs:element name="contact" type="ContactType"/>
+            <xs:element name="horaires">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="horaire" type="HoraireType" minOccurs="1" maxOccurs="6"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="tarifConsultation" type="MontantType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="MedecinIdType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="AllergieType">
+        <xs:simpleContent>
+            <xs:extension base="NomType">
+                <xs:attribute name="gravite" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="legere"/>
+                            <xs:enumeration value="moderee"/>
+                            <xs:enumeration value="severe"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="DossierMedicalType">
+        <xs:sequence>
+            <xs:element name="groupeSanguin" type="GroupeSanguinType"/>
+            <xs:element name="poids" type="PoidsType"/>
+            <xs:element name="taille" type="TailleType"/>
+            <xs:element name="allergies" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="allergie" type="AllergieType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="antecedents" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="antecedent" type="NomType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PatientType">
+        <xs:sequence>
+            <xs:element name="nom" type="NomType"/>
+            <xs:element name="prenom" type="NomType"/>
+            <xs:element name="cin" type="CinType" minOccurs="0"/>
+            <xs:element name="sexe" type="SexeType"/>
+            <xs:element name="dateNaissance" type="DateNaissanceType"/>
+            <xs:element name="adresse" type="AdresseType"/>
+            <xs:element name="contact" type="ContactType"/>
+            <xs:element name="dossierMedical" type="DossierMedicalType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="PatientIdType" use="required"/>
+        <xs:attribute name="assureCNAM" type="xs:boolean" default="false"/>
+    </xs:complexType>
+
+    <xs:complexType name="RendezVousType">
+        <xs:sequence>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="heure" type="xs:time"/>
+            <xs:element name="motif" type="NomType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="RdvIdType" use="required"/>
+        <xs:attribute name="medecinRef" type="MedecinIdType" use="required"/>
+        <xs:attribute name="patientRef" type="PatientIdType" use="required"/>
+        <xs:attribute name="statut" type="StatutRdvType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="MedicamentType">
+        <xs:sequence>
+            <xs:element name="nom" type="NomType"/>
+            <xs:element name="dosage" type="NomType"/>
+            <xs:element name="frequence" type="NomType"/>
+            <xs:element name="dureeJours" type="DureeJoursType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ConsultationType">
+        <xs:sequence>
+            <xs:element name="constantes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="temperature" type="TemperatureType"/>
+                        <xs:element name="tension" type="TensionType" minOccurs="0"/>
+                        <xs:element name="poids" type="PoidsType" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="diagnostic" type="NomType"/>
+            <xs:element name="ordonnance" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="medicament" type="MedicamentType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="examens" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="examen" type="NomType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="ConsultationIdType" use="required"/>
+        <xs:attribute name="rdvRef" type="RdvIdType" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="FactureType">
+        <xs:sequence>
+            <xs:element name="montant" type="MontantType"/>
+            <xs:element name="modePaiement" type="ModePaiementType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="FactureIdType" use="required"/>
+        <xs:attribute name="consultationRef" type="ConsultationIdType" use="required"/>
+        <xs:attribute name="payee" type="xs:boolean" use="required"/>
+    </xs:complexType>
+
+
+
+    <xs:element name="cabinet">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="informations">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nom" type="NomType"/>
+                            <xs:element name="adresse" type="AdresseType"/>
+                            <xs:element name="contact" type="ContactType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="medecins">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="medecin" type="MedecinType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="patients">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="patient" type="PatientType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rendezVousListe">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="rendezVous" type="RendezVousType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="consultations">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="consultation" type="ConsultationType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="factures">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="facture" type="FactureType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+
+        <!-- Cles primaires -->
+        <xs:key name="medecinKey">
+            <xs:selector xpath="medecins/medecin"/><xs:field xpath="@id"/>
+        </xs:key>
+        <xs:key name="patientKey">
+            <xs:selector xpath="patients/patient"/><xs:field xpath="@id"/>
+        </xs:key>
+        <xs:key name="rdvKey">
+            <xs:selector xpath="rendezVousListe/rendezVous"/><xs:field xpath="@id"/>
+        </xs:key>
+        <xs:key name="consultationKey">
+            <xs:selector xpath="consultations/consultation"/><xs:field xpath="@id"/>
+        </xs:key>
+
+
+        <xs:unique name="cinPatientUnique">
+            <xs:selector xpath="patients/patient"/><xs:field xpath="cin"/>
+        </xs:unique>
+        <xs:unique name="cinMedecinUnique">
+            <xs:selector xpath="medecins/medecin"/><xs:field xpath="cin"/>
+        </xs:unique>
+
+        <xs:unique name="creneauUnique">
+            <xs:selector xpath="rendezVousListe/rendezVous"/>
+            <xs:field xpath="@medecinRef"/><xs:field xpath="date"/><xs:field xpath="heure"/>
+        </xs:unique>
+
+        <xs:unique name="uneConsultationParRdv">
+            <xs:selector xpath="consultations/consultation"/><xs:field xpath="@rdvRef"/>
+        </xs:unique>
+        <xs:unique name="uneFactureParConsultation">
+            <xs:selector xpath="factures/facture"/><xs:field xpath="@consultationRef"/>
+        </xs:unique>
+
+
+        <xs:keyref name="rdvMedecinRef" refer="medecinKey">
+            <xs:selector xpath="rendezVousListe/rendezVous"/><xs:field xpath="@medecinRef"/>
+        </xs:keyref>
+        <xs:keyref name="rdvPatientRef" refer="patientKey">
+            <xs:selector xpath="rendezVousListe/rendezVous"/><xs:field xpath="@patientRef"/>
+        </xs:keyref>
+        <xs:keyref name="consultationRdvRef" refer="rdvKey">
+            <xs:selector xpath="consultations/consultation"/><xs:field xpath="@rdvRef"/>
+        </xs:keyref>
+        <xs:keyref name="factureConsultationRef" refer="consultationKey">
+            <xs:selector xpath="factures/facture"/><xs:field xpath="@consultationRef"/>
+        </xs:keyref>
+    </xs:element>
+
+</xs:schema>
